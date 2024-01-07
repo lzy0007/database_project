@@ -1,6 +1,7 @@
 ## Film dashboard (ZX)
 
-- The highest sales film name, category, actor
+- The highest sales film name, category
+- The highest ratio of sales with number of films by actor
 - The list of films group by actor, category, language, release_year (total 4 queries)
 - The number of films group by actor, category, language, release_year (total 4 queries)
 - The sales over year
