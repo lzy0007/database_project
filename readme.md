@@ -1,4 +1,4 @@
-# Film dashboard (ZX)
+## Film dashboard (ZX)
 
 - The highest sales film name, category, actor
 - The list of films group by actor, category, language, release_year (total 4 queries)
@@ -7,14 +7,14 @@
 - The sales group by rental_rate, rental_duration, rating, category, special_features
 
 
-# store dashboard (Loo) 
+## store dashboard (Loo) 
 
 - the most sales store, the most number of staff store, the most number of rental store
 - the list of staff for each store
 - number of staff, inventory, rental, sales, customer in each store
 
 
-# customer dashboard (SAM)
+## customer dashboard (SAM)
 
 - customer_name who buy the most in price, who buy the most in number of inventory
 - distribution of customer in city
@@ -22,7 +22,7 @@
 - the number of customer over years
 
 
-# staff dashboard (RX)
+## staff dashboard (RX)
 
 - number of active staff, the most sales staff name
 - distribution of staff over city
