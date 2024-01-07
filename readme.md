@@ -1,5 +1,5 @@
 ## Overview (ZX)
-- The total sales, films, inventory, rental
+- The total sales, films, inventory, rental, customer
 - The sales over year
 
 ## Film dashboard (ZX)
