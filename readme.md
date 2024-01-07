@@ -23,7 +23,7 @@
 - customer_name who buy the most in price, who buy the most in number of inventory
 - distribution of customer in city
 - distribution of sales over customer city
-- the number of customer over years
+- the number of customer over payment years
 
 
 ## staff dashboard (LOO)
