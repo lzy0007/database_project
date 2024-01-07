@@ -7,7 +7,7 @@
 - The sales group by rental_rate, rental_duration, rating, category, special_features
 
 
-## store dashboard (Loo) 
+## store dashboard (RX) 
 
 - the most sales store, the most number of staff store, the most number of rental store
 - the list of staff for each store
@@ -22,7 +22,7 @@
 - the number of customer over years
 
 
-## staff dashboard (RX)
+## staff dashboard (LOO)
 
 - number of active staff, the most sales staff name
 - distribution of staff over city
