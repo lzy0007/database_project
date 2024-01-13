@@ -225,6 +225,69 @@ GROUP BY f.special_features
 #customer
 
 
+#staff
+
+staff_active = """
+
+SELECT count(staff_id) no_of_staff
+FROM staff
+WHERE active = 1;
+
+"""
+
+staff_MostSales = """
+
+SELECT st.staff_id, sum(p.amount) total_sales
+FROM staff st
+JOIN payment p
+ON st.staff_id = p.staff_id
+GROUP BY st.staff_id
+ORDER BY total_sales DESC
+LIMIT 1;
+
+"""
+
+staff_DistributionOverCity = """
+
+SELECT c.city, count(*) AS staff_count
+FROM city c
+INNER JOIN address a ON c.city_id = a.city_id
+INNER JOIN staff s ON a.address_id = s.address_id
+GROUP BY c.city_id, c.city
+ORDER BY staff_count DESC;
+
+"""
+
+staff_RatioRental_NumServicedCustomerOverStaff = """
+
+SELECT 
+    s.staff_id, 
+    count(DISTINCT r.rental_id) AS num_rentals, 
+    count(DISTINCT c.customer_id) AS num_customers, 
+    (count(DISTINCT r.rental_id) / count(DISTINCT c.customer_id)) AS rental_customer_ratio
+FROM staff s
+LEFT JOIN rental r ON s.staff_id = r.staff_id
+LEFT JOIN customer c ON r.customer_id = c.customer_id
+GROUP BY s.staff_id
+ORDER BY rental_customer_ratio DESC;
+
+"""
+
+staff_RatioSales_NumRentalOverStaff = """
+
+SELECT
+    s.staff_id,
+    count(DISTINCT r.rental_id) AS num_rentals,
+    SUM(p.amount) AS total_sales,
+    (NULLIF(SUM(p.amount), 0) / count(DISTINCT r.rental_id)) AS sales_rental_ratio
+FROM staff s
+LEFT JOIN rental r ON s.staff_id = r.staff_id
+LEFT JOIN payment p ON r.rental_id = p.rental_id
+GROUP BY s.staff_id
+ORDER BY sales_rental_ratio DESC;
+
+"""
+
 
 #staff
 
