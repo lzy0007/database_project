@@ -224,6 +224,64 @@ GROUP BY f.special_features
 
 #customer
 
+customer_mostInPrice = """
+
+SELECT CONCAT(c.first_name," ", c.last_name), SUM(p.amount) AS total_amount
+FROM customer c
+JOIN payment p ON c.customer_id = p.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name
+ORDER BY total_amount DESC
+LIMIT 1;
+
+"""
+
+
+customer_mostInInventory = """
+
+SELECT CONCAT(c.first_name," ", c.last_name), COUNT(r.inventory_id) AS inventory_count
+FROM customer c
+JOIN rental r ON c.customer_id = r.customer_id
+JOIN inventory i ON r.inventory_id = i.inventory_id
+GROUP BY c.customer_id, c.first_name, c.last_name
+ORDER BY inventory_count DESC
+LIMIT 1;
+
+"""
+
+
+customer_distributionCustomersCity = """
+
+SELECT a.district, COUNT(c.customer_id) AS customer_count
+FROM customer c
+JOIN address a ON c.address_id = a.address_id
+GROUP BY a.district
+ORDER BY customer_count DESC;
+
+"""
+
+
+customer_distributionCustomerSalesCity = """
+
+SELECT a.district, SUM(p.amount) AS total_sales
+FROM payment p
+JOIN customer c ON p.customer_id = c.customer_id
+JOIN address a ON c.address_id = a.address_id
+GROUP BY a.district
+ORDER BY total_sales DESC;
+
+"""
+
+
+customer_overPaymentYears = """
+
+SELECT YEAR(p.payment_date) AS payment_year, COUNT(DISTINCT c.customer_id) AS customer_count
+FROM payment p
+JOIN customer c ON p.customer_id = c.customer_id
+GROUP BY payment_year
+ORDER BY payment_year;
+
+"""
+
 
 #staff
 
