@@ -220,6 +220,116 @@ GROUP BY f.special_features
 
 #store
 
+store_totalStore = """
+
+SELECT COUNT(store_id) AS total_store FROM store;
+
+"""
+
+
+store_highSalesStore = """
+
+SELECT s.store_id, COUNT(p.payment_id) AS no_of_sales
+FROM payment p
+INNER JOIN customer c ON p.customer_id = c.customer_id
+INNER JOIN store s ON s.store_id = c.store_id
+GROUP BY s.store_id
+ORDER BY COUNT(p.payment_id) DESC
+LIMIT 1;
+
+"""
+
+
+store_highStaffStore = """
+
+SELECT s.store_id, COUNT(st.staff_id) AS no_of_staff
+FROM staff st
+INNER JOIN store s ON st.staff_id = s.manager_staff_id
+GROUP BY s.store_id
+ORDER BY COUNT(st.staff_id) DESC
+LIMIT 1;
+
+"""
+
+
+store_highRentalStore = """
+
+SELECT s.store_id, COUNT(r.rental_id) AS no_of_rental
+FROM rental r
+INNER JOIN customer c ON r.customer_id = c.customer_id
+INNER JOIN store s ON s.store_id = c.store_id
+GROUP BY s.store_id
+ORDER BY COUNT(r.rental_id) DESC
+LIMIT 1;
+
+"""
+
+
+store_listStaffStore = """
+
+SELECT s.store_id, CONCAT(st.first_name, ' ', st.last_name) AS staff_full_name
+FROM staff st
+INNER JOIN store s ON st.staff_id = s.manager_staff_id;
+
+"""
+
+
+store_numStaffEachStore = """
+
+SELECT s.store_id, COUNT(st.staff_id) AS no_of_staff
+FROM staff st
+INNER JOIN store s ON st.staff_id = s.manager_staff_id
+GROUP BY s.store_id
+ORDER BY COUNT(st.staff_id) DESC;
+
+"""
+
+
+store_numInventoryEachStore = """
+
+SELECT s.store_id, COUNT(i.inventory_id) AS no_of_inventory
+FROM inventory i
+INNER JOIN store s ON i.store_id = s.store_id
+GROUP BY s.store_id
+ORDER BY COUNT(i.inventory_id) DESC;
+
+"""
+
+
+store_numRentalEachStore = """
+
+SELECT s.store_id, COUNT(r.rental_id) AS no_of_rental
+FROM rental r
+INNER JOIN customer c ON r.customer_id = c.customer_id
+INNER JOIN store s ON s.store_id = c.store_id
+GROUP BY s.store_id
+ORDER BY COUNT(r.rental_id) DESC;
+
+"""
+
+
+store_numSalesEachStore = """
+
+SELECT s.store_id, COUNT(p.payment_id) AS no_of_sales
+FROM payment p
+INNER JOIN customer c ON p.customer_id = c.customer_id
+INNER JOIN store s ON s.store_id = c.store_id
+GROUP BY s.store_id
+ORDER BY COUNT(p.payment_id) DESC;
+
+"""
+
+
+store_numCustomerEachStore = """
+
+SELECT s.store_id, COUNT(c.customer_id) AS no_of_customer
+FROM customer c 
+INNER JOIN store s ON c.store_id = s.store_id
+GROUP BY s.store_id
+ORDER BY COUNT(c.customer_id) DESC;
+
+"""
+
 
 
 #customer
